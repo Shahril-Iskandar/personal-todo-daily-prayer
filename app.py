@@ -1,8 +1,12 @@
 import streamlit as st
 import pandas as pd
 import datetime
+import pytz
 
 prayer_labels = ["Subuh", "Zuhur", "Asar", "Maghrib", "Isyak"]
+
+# Get the Singapore timezone object
+sg_timezone = pytz.timezone('Asia/Singapore')
 
 st.title('Solat Time Tracker')
 df = pd.read_csv('data.csv')
@@ -15,8 +19,8 @@ for idx, prayer_label in enumerate(prayer_labels):
     with columns[idx]:
         if st.button(prayer_labels[idx]):
             # Get the current time
-            current_time = datetime.datetime.now().strftime('%H:%M:%S')
-            current_day = datetime.datetime.now().strftime('%d-%m-%Y')
+            current_time = datetime.datetime.now(sg_timezone).strftime('%H:%M:%S')
+            current_day = datetime.datetime.now(sg_timezone).strftime('%d-%m-%Y')
 
             new_data = {"Date": current_day, "Prayer": prayer_label, "Time": current_time}
             # df = df.append(new_data, ignore_index=True)
