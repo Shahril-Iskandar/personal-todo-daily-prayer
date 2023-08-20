@@ -11,7 +11,6 @@ prayer_labels = ["Subuh", "Zuhur", "Asar", "Maghrib", "Isyak"]
 sg_timezone = pytz.timezone('Asia/Singapore')
 
 st.title('Solat Time Tracker')
-# df = pd.read_csv('data.csv')
 
 deta = Deta(st.secrets["DETA_KEY"])
 db = deta.Base("ToDoApp")
@@ -26,19 +25,14 @@ for idx, prayer_label in enumerate(prayer_labels):
         if st.button(prayer_labels[idx]):
             # Get the current time
             current_time = datetime.datetime.now(sg_timezone).strftime('%H:%M')
-            current_day = datetime.datetime.now(sg_timezone).strftime('%Y-%m-%d %H:%M')
-
-            # new_data = {"Date": current_day, "Prayer": prayer_label, "Time": current_time}
-            # df2 = pd.DataFrame(new_data, index=[0])
-            # df = pd.concat([df, df2])
-            # df.to_csv("data.csv", index=False)
-            
+            current_day = datetime.datetime.now(sg_timezone).strftime('%Y-%m-%d %H:%M')            
             db.put({"Date": current_day, "Prayer": prayer_label, "Time": current_time})
 
             # Display success message
             st.success(f"{prayer_label} time logged successfully!")    
 
 st.header("View historical praying time")
+
 # Filter data for a specific prayer (you can customize this)
 db_content = db.fetch().items
 db_content = pd.DataFrame(db_content)
