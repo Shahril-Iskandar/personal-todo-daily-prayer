@@ -1,7 +1,7 @@
 deta==1.2.0
-streamlit
-pandas
+streamlit==1.25.0
+pandas==1.5.3
 datetime
-pytz
-matplotlib.pyplot
-altair
+pytz==2023.3
+matplotlib.pyplot==3.7.1
+altair==5.0.1
