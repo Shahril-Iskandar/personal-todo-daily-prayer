@@ -4,6 +4,7 @@ import datetime
 import pytz
 # import matplotlib.pyplot as plt
 import altair as alt
+import deta as Deta
 
 prayer_labels = ["Subuh", "Zuhur", "Asar", "Maghrib", "Isyak"]
 
@@ -12,6 +13,9 @@ sg_timezone = pytz.timezone('Asia/Singapore')
 
 st.title('Solat Time Tracker')
 df = pd.read_csv('data.csv')
+
+deta = Deta(st.secrets["DETA_KEY"])
+db = deta.Base("ToDoApp")
 
 col1, col2, col3, col4, col5 = st.columns(5)
 
@@ -28,15 +32,20 @@ for idx, prayer_label in enumerate(prayer_labels):
             df2 = pd.DataFrame(new_data, index=[0])
             df = pd.concat([df, df2])
             df.to_csv("data.csv", index=False)
+            
+            db.put({"Date": current_day, "Prayer": prayer_label, "Time": current_time})
 
             # Display success message
-            st.success(f"{prayer_label} time logged successfully!")
+            st.success(f"{prayer_label} time logged successfully!")    
 
 # Filter data for a specific prayer (you can customize this)
 selected_prayer = st.selectbox("Select Prayer", df["Prayer"].unique())
 filtered_data = df[df["Prayer"] == selected_prayer]
 
 st.write(filtered_data)
+
+db_content = db.fetch().items
+st.write(db_content)
 
 fig = alt.Chart(filtered_data).mark_line().encode(
     x=alt.X('yearmonthdate(Date):O').title('Date'),
