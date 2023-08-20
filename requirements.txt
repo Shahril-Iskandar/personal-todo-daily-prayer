@@ -4,4 +4,4 @@ datetime
 pytz
 matplotlib.pyplot
 altair
-deta==1.2.0
+deta
