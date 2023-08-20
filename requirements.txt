@@ -1,7 +1,7 @@
+deta==1.2.0
 streamlit
 pandas
 datetime
 pytz
 matplotlib.pyplot
 altair
-deta==1.2.0
