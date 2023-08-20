@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import datetime
 import pytz
-# import matplotlib.pyplot as plt
 import altair as alt
 from deta import Deta
 
@@ -62,15 +61,6 @@ st.altair_chart(fig, use_container_width=True)
 # # Plot the line chart
 # st.write(f"Line Chart for {selected_prayer} Prayer Time")
 # st.line_chart(filtered_data.set_index("Date")["Time"])
-
-# st.write(f"Matplotlib figure")
-# fig, ax = plt.subplots()
-# ax.plot(filtered_data['Date'], filtered_data['Time'])
-# ax.set_xlabel('Date')
-# ax.set_ylabel('Time')
-# ax.set_yticks(range(25))
-# ax.set_yticklabels([f'{t:02.0f}:00' for t in range(25)])
-# st.pyplot(fig)
 
 st.header("Existing dataset")
 st.write(df)
