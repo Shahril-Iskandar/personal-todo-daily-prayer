@@ -3,5 +3,5 @@ streamlit==1.25.0
 pandas==1.5.3
 datetime
 pytz==2023.3
-matplotlib.pyplot==3.7.1
+matplotlib.pyplot
 altair==5.0.1
