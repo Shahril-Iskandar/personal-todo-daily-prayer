@@ -25,7 +25,6 @@ for idx, prayer_label in enumerate(prayer_labels):
             current_day = datetime.datetime.now(sg_timezone).strftime('%Y-%m-%d %H:%M')
 
             new_data = {"Date": current_day, "Prayer": prayer_label, "Time": current_time}
-            # df = df.append(new_data, ignore_index=True)
             df2 = pd.DataFrame(new_data, index=[0])
             df = pd.concat([df, df2])
             df.to_csv("data.csv", index=False)
