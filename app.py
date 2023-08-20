@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import datetime
 import pytz
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import altair as alt
 
 prayer_labels = ["Subuh", "Zuhur", "Asar", "Maghrib", "Isyak"]
