@@ -4,7 +4,7 @@ import datetime
 import pytz
 # import matplotlib.pyplot as plt
 import altair as alt
-import deta as Deta
+from deta import Deta
 
 prayer_labels = ["Subuh", "Zuhur", "Asar", "Maghrib", "Isyak"]
 
